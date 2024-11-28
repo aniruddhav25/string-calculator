@@ -17,4 +17,8 @@ describe("String Calculator", () => {
     expect(add("1,2,3,4")).toBe(10);
   });
 
+  it("handles newlines between numbers", () => {
+    expect(add("1\n2,3")).toBe(6);
+  });
+
 });
