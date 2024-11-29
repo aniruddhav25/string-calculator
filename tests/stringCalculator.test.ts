@@ -58,4 +58,12 @@ describe("String Calculator", () => {
     expect(add("//[***]\n")).toBe(0);
   });
 
+  it("handles multi-character delimiters with spaces", () => {
+    expect(add("//[---]\n1---2---3")).toBe(6);
+  });
+
+  it("handles a multi-character delimiter with different numbers", () => {
+    expect(add("//[###]\n4###5###6")).toBe(15);
+  });
+
 });
