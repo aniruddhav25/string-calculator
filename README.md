@@ -9,6 +9,7 @@
 1. Clone the repository.
 2. Install dependencies: `npm install`
 3. Run tests: `npm test`
+4. Run with custom inputs : Modify the input string in the add() function and run `npm start`
 
 ## Design Highlights
 - Developed using TDD principles.
