@@ -33,4 +33,29 @@ describe("String Calculator", () => {
     expect(() => add("-2")).toThrow("negative numbers not allowed: -2");
   });
 
+  it("ignores numbers larger than the specified max limit", () => {
+    expect(add("1,1000,2,2000", 2000)).toBe(3003);
+  });
+
+  it("ignores numbers larger than the specified max limit", () => {
+    expect(add("1,1000,2,2000", 2000)).toBe(3003);
+  });
+
+  it("throws an error for non-numeric inputs", () => {
+    expect(() => add("1,a,3")).toThrow("Invalid input detected: a");
+  });
+
+  it("handles a multi-character delimiter", () => {
+    expect(add("//[***]\n1***2***3")).toBe(6);
+  });
+
+  it("throws an error for negative numbers with multi-character delimiters", () => {
+    expect(() => add("//[***]\n1***-2***3"))
+      .toThrow("negative numbers not allowed: -2");
+  });
+
+  it("handles empty input with a multi-character delimiter", () => {
+    expect(add("//[***]\n")).toBe(0);
+  });
+
 });
