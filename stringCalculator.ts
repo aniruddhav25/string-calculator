@@ -1,16 +1,16 @@
-export function add(numbers: string, maxNumber: number = 1000): number {
+export function add(numbers: string, maxNumber: number = 1000): number { // Default maxNumber set to 1000 if not received when the function is called.
   if (numbers === "") return 0;
 
   let delimiters = /,|\n/; // Default delimiters
-  const customDelimiterPattern = /^\/\/(\[.+\])\n/; // Multi-character delimiters
+  const customDelimiterPattern = /^\/\/(\[.*?\])+\n/; // Multi-character delimiters
   const singleDelimiterPattern = /^\/\/(.+)\n/; // Single-character delimiters
 
   // Check for custom delimiters
   if (customDelimiterPattern.test(numbers)) {
     const match = numbers.match(customDelimiterPattern);
     if (match) {
-      const rawDelimiters = match[1];
-      delimiters = new RegExp(escapeRegex(rawDelimiters.slice(1, -1)));
+      const rawDelimiters = match[0].match(/\[.*?\]/g)?.map((delim) => delim.slice(1,-1)) || [];
+      delimiters = new RegExp(rawDelimiters.map(escapeRegex).join("|"));
       numbers = numbers.slice(match[0].length);
     }
   } else if (singleDelimiterPattern.test(numbers)) {

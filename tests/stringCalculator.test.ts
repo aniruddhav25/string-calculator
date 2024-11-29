@@ -65,5 +65,10 @@ describe("String Calculator", () => {
   it("handles a multi-character delimiter with different numbers", () => {
     expect(add("//[###]\n4###5###6")).toBe(15);
   });
+  
+  it("handles a multiple multi-character single length delimiter", () => {
+    expect(add("//[#][%]\n5#1%3")).toBe(9);
+  });
+
 
 });
